@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nearby Shops</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'map.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <h1>Nearby Shops</h1>
+    {% if shops %}
+    <ul>
+        {% for shop in shops %}
+        <li>
+            {{ shop.name }}: {{shop.distance}}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {{ markers|json_script:"markers-data" }}
+
+    <div id="map"></div>
+    <script src="{% static 'map.js' %}"></script>
+</body>
+
+</html>
